@@ -61,7 +61,8 @@ const getState = ({ getStore, setStore, getActions }) => {
 					});
 			},
 			editContact: contact => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/", {
+				console.log(contact.id);
+				fetch(`https://assets.breatheco.de/apis/fake/contact/${contact.id}`, {
 					method: "PUT",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({
@@ -69,13 +70,15 @@ const getState = ({ getStore, setStore, getActions }) => {
 						full_name: contact.name,
 						address: contact.address,
 						phone: contact.phone,
-						email: contact.email
+						email: contact.email,
+						id: contact.id
 					})
 				})
 					.then(res => res.json())
 					.then(() => {
 						getActions().getData();
-					});
+					})
+					.catch(err => console.log(err));
 			}
 		}
 	};

@@ -29,11 +29,18 @@ export const Contacts = () => {
 										<span key={index}>
 											<ContactCard
 												contact={item}
-												onDelete={() =>
-													setState({
-														showModal: true,
-														contactToDelete: item.id
-													})
+												key={index}
+												onDelete={
+													() =>
+														setState({
+															showModal: true,
+															contactToDelete: item.id
+														})
+													// ={() =>
+													// 	setState({
+													// 		showModal: true,
+													// 		contactToDelete: item.id
+													// 	})
 												}
 											/>
 										</span>
